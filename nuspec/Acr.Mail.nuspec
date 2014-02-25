@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Acr.Mail</id>
+        <version>3.0.0</version>
+        <title>Acr.Mail</title>
+        <description>Mail Library Templates</description>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+        <projectUrl>https://github.com/aritchie/acrframework</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>utils</tags>
+    </metadata>
+    <files>
+        <file src="..\bin\Release\net45\Acr.Mail.dll" target="lib\net45\Acr.Mail.dll" />
+
+    </files>
+</package>

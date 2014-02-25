@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mail>
+    <subject>@Model.Subject</subject>
+    <text-content>
+        if (@ViewBag.Helper.IsEmpty(@Model.Test)) {
+            POOF
+        }
+        
+        if (!@ViewBag.Helper.IsEmpty(@Model.Subject)) {
+            WORKS
+        }
+    </text-content>
+</mail>

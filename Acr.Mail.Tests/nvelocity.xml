@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mail>
+    <subject>$model.Subject</subject>
+    <text-content>
+        #if ($helper.IsEmpty($model.Test))
+        POOF
+        #end
+        
+        #if (!$helper.IsEmpty($model.Subject))
+        WORKS
+        #end
+    </text-content>
+</mail>

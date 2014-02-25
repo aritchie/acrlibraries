@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mail>
+    <subject>Test Subject</subject>
+    <message-id>111-222</message-id>
+    <reply-to-message-id>111</reply-to-message-id>
+    <priority>Low</priority>
+    <from>
+        <display>test test</display>
+        <address>test@test.com</address>
+    </from>
+    <!--message-id & reply-to-message-id in root config-->
+    <headers>
+        <header>
+            <key>allan</key>
+            <value>ritchie</value>
+        </header>
+    </headers>
+    <to>
+        <mailaddress>
+            <display>test test</display>
+            <address>test@test.com</address>
+        </mailaddress>
+    </to>
+    <cc>
+        <mailaddress>
+            <display>test test</display>
+            <address>test@test.com</address>
+        </mailaddress>
+    </cc>
+    <bcc>
+        <mailaddress>
+            <display>test test</display>
+            <address>test@test.com</address>
+        </mailaddress>
+    </bcc>
+    <reply-to>
+        <mailaddress>
+            <display>test test</display>
+            <address>test@test.com</address>
+        </mailaddress>
+    </reply-to>
+    <html-content>
+        <![CDATA[
+        <html>
+        <body>
+            <h1>Test Body HTML</h1>
+        </body>
+        </html>
+        ]]>
+    </html-content>
+    <text-content>
+        Test Body Text
+    </text-content>
+</mail>
