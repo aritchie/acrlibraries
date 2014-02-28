@@ -41,6 +41,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Email.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IMailFactory.cs" />
     <Compile Include="IMailTemplateParser.cs" />

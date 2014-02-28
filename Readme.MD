@@ -1,12 +1,23 @@
-using System.Reflection;
+Utility Library (Acr)
+---
+* 
+
+Entity Framework Library (Acr.Ef)
+---
+* Event level modules ()
+* Dependency Injection
+* Paging support
+* Catalog/Schema Injection
+
+Ninject Extensions
+* Quick access to DI for Entity Framework with Ninject
 
 
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ACR Libraries 7.0")]
-[assembly: AssemblyCopyright("Copyright 2005-2014 Allan Ritchie")]
+NHibernate Library (Acr.Nh)
+---
+* Adds dependency injection for event listeners
+* Adds support for better validation support
+* Paging Support
+* Catalog/Schema Injection
 
-#if DEBUG
-[assembly: AssemblyConfiguration("DEBUG")]
-#else
-[assembly: AssemblyConfiguration("")]
-#endif
+Ninject Support

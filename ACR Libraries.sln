@@ -20,8 +20,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.NetFx", "Acr.NetFx\Acr.NetFx.csproj", "{2535D307-F6FC-408E-8ED4-BBAFEADE160A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1D5FD2EF-A6A0-4784-A550-29063A79A2C8}"
+	ProjectSection(SolutionItems) = preProject
+		nuspec\Acr.Ef.NinjectExtensions.nuspec = nuspec\Acr.Ef.NinjectExtensions.nuspec
+		nuspec\Acr.Ef.nuspec = nuspec\Acr.Ef.nuspec
+		nuspec\Acr.Nh.Extensions.nuspec = nuspec\Acr.Nh.Extensions.nuspec
+		nuspec\Acr.Nh.nuspec = nuspec\Acr.Nh.nuspec
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mail", "Mail", "{F50E72D4-3C21-46C1-B298-42BB5E3C7ABC}"
+	ProjectSection(SolutionItems) = preProject
+		nuspec\Acr.Mail.nuspec = nuspec\Acr.Mail.nuspec
+		nuspec\Acr.Mail.NVelocityParser.nuspec = nuspec\Acr.Mail.NVelocityParser.nuspec
+		nuspec\Acr.Mail.RazorParser.nuspec = nuspec\Acr.Mail.RazorParser.nuspec
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.Mail.Tests", "Acr.Mail.Tests\Acr.Mail.Tests.csproj", "{9390E04A-ED7E-44F3-86EB-F76E2AC5F2C0}"
 EndProject

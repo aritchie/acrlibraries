@@ -27,6 +27,7 @@ namespace Acr.Mail {
             return (en == null || !en.Any());
         }
 
+
         public static string[] SplitTrim(this string value, char splitter) {
             return value
                 .Split(splitter)
