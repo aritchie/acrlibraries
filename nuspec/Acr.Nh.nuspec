@@ -1,24 +1,17 @@
 <?xml version="1.0"?>
 <package >
     <metadata>
-        <id>$id$</id>
-        <version>$version$</version>
-        <title>$title$</title>
-        <authors>aritchie</authors>
-        <owners>aritchie</owners>
-        <description>$description$</description>
-        <!--
-        <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-        <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-        <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
-        -->
+        <id>Acr.Nh</id>
+        <version>7.0.0</version>
+        <title>Acr NHibernate Extensions Library</title>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <description>NHibernate Utility Library</description>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>NHibernate Validation Auditing</tags>
+        <tags>NHibernate Validation Auditing DI</tags>
         <dependencies>
             <dependency id="Acr" version="7.0" />
             <dependency id="NHibernate" version="3.3.0" />
-            <dependency id="NHibernate.Envers" version="1.5" />
-            <dependency id="FluentValidation" version="3.4" />
         </dependencies>
     </metadata>
 </package>
