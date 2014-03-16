@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.Ef</id>
-        <version>0.5.0</version>
+        <version>0.5.1</version>
         <title>Acr Entity Framework Extensions Library</title>
         <description>Entity Framework Utility Library</description>
         <authors>Allan Ritchie</authors>
@@ -13,10 +13,11 @@
         <tags>utils</tags>
 
         <dependencies>
+            <dependency id="Acr" version="7.0" />
             <dependency id="EntityFramework" version="6.0" />
         </dependencies>
     </metadata>
-    
+
     <files>
         <file src="..\bin\Release\net45\Acr.Ef.dll" target="lib\net45\Acr.Ef.dll" />
 
