@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.Ef</id>
-        <version>0.4.0</version>
+        <version>0.5.0</version>
         <title>Acr.Ef</title>
         <description>Entity Framework Utility Library</description>
         <authors>Allan Ritchie</authors>

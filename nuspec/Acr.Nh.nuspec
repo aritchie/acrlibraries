@@ -13,8 +13,6 @@
         <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
         -->
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <!--<releaseNotes>Initial 2.0 Release</releaseNotes>-->
-        <copyright>Copyright 2013</copyright>
         <tags>NHibernate Validation Auditing</tags>
         <dependencies>
             <dependency id="Acr" version="7.0" />

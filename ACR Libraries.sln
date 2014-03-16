@@ -36,12 +36,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.Mail.Tests", "Acr.Mail.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuspec", ".nuspec", "{5A272960-5E78-4121-8F05-230777C85CC5}"
 	ProjectSection(SolutionItems) = preProject
+		nuspec\Acr.Autofac.nuspec = nuspec\Acr.Autofac.nuspec
 		nuspec\Acr.Ef.nuspec = nuspec\Acr.Ef.nuspec
 		nuspec\Acr.Mail.nuspec = nuspec\Acr.Mail.nuspec
 		nuspec\Acr.Mail.NVelocityParser.nuspec = nuspec\Acr.Mail.NVelocityParser.nuspec
 		nuspec\Acr.Mail.RazorParser.nuspec = nuspec\Acr.Mail.RazorParser.nuspec
 		nuspec\Acr.NetFx.nuspec = nuspec\Acr.NetFx.nuspec
 		nuspec\Acr.Nh.nuspec = nuspec\Acr.Nh.nuspec
+		nuspec\Acr.Ninject.nuspec = nuspec\Acr.Ninject.nuspec
 		nuspec\Acr.nuspec = nuspec\Acr.nuspec
 		nuspec\nuget.exe = nuspec\nuget.exe
 		nuspec\pack.bat = nuspec\pack.bat
