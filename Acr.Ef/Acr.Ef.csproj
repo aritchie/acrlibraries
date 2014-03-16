@@ -69,6 +69,7 @@
     <Compile Include="DefaultEfDependencyResolver.cs" />
     <Compile Include="IEfDependencyResolver.cs" />
     <Compile Include="Pager.cs" />
+    <Compile Include="ServiceContainerEfDependencyInjector.cs" />
     <Compile Include="UtilExtensions.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\Validator.cs" />
@@ -84,7 +85,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Acr\Acr.csproj">
+      <Project>{41b1f01c-4022-4925-b0be-41323c8e8178}</Project>
+      <Name>Acr</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

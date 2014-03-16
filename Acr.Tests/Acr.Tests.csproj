@@ -55,7 +55,6 @@
     <Compile Include="Reflection\TestObject.cs" />
     <Compile Include="Security\CipherUtilTests.cs" />
     <Compile Include="Security\TokenCreatorTests.cs" />
-    <Compile Include="TimerTests.cs" />
     <Compile Include="VerifyTests.cs" />
   </ItemGroup>
   <ItemGroup>

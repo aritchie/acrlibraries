@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Acr.Linq;
 using NHibernate;
 using NHibernate.Event;
 using NHibernate.Persister.Entity;
@@ -50,24 +49,24 @@ namespace Acr.Nh.EventListeners {
         }
 
 
-        public static void UpdateState<T, TProperty>(this AbstractPreDatabaseOperationEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
-            @event.UpdateState(property.GetMember().Name, value);
-        }
+        //public static void UpdateState<T, TProperty>(this AbstractPreDatabaseOperationEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
+        //    @event.UpdateState(property.GetMember().Name, value);
+        //}
 
 
-        public static void UpdateState<T, TProperty>(this PreInsertEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
-            @event.UpdateState(property.GetMember().Name, value);
-        }
+        //public static void UpdateState<T, TProperty>(this PreInsertEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
+        //    @event.UpdateState(property.GetMember().Name, value);
+        //}
 
 
-        public static void UpdateState<T, TProperty>(this PreUpdateEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
-            @event.UpdateState(property.GetMember().Name, value);
-        }
+        //public static void UpdateState<T, TProperty>(this PreUpdateEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
+        //    @event.UpdateState(property.GetMember().Name, value);
+        //}
 
 
-        public static bool IsDirtyProperty<T, TProperty>(this PreUpdateEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
-            return @event.IsDirtyProperty(property.GetMember().Name);
-        }
+        //public static bool IsDirtyProperty<T, TProperty>(this PreUpdateEvent @event, Expression<Func<T, TProperty>> property, TProperty value) {
+        //    return @event.IsDirtyProperty(property.GetMember().Name);
+        //}
 
 
         public static bool IsDirtyProperty(this PreUpdateEvent @event, string propertyName) {

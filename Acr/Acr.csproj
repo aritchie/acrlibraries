@@ -112,13 +112,13 @@
     </Compile>
     <Compile Include="Collections\ObservableDictionary.cs" />
     <Compile Include="FileSizeFormatProvider.cs" />
+    <Compile Include="IServiceContainer.cs" />
     <Compile Include="ResourceUtil.cs" />
-    <Compile Include="Threading\TaskAsyncResult.cs" />
-    <Compile Include="Threading\Timer.cs" />
+    <Compile Include="Ioc.cs" />
+    <Compile Include="ServiceScope.cs" />
     <Compile Include="Verify.cs" />
     <Compile Include="Collections\EnumerableExtensions.cs" />
     <Compile Include="DateTimeExtensions.cs" />
-    <Compile Include="Linq\ExpressionUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ObjectUtil.cs" />
     <Compile Include="Reflection\TypeUtil.cs" />
