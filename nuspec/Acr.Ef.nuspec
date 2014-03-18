@@ -13,8 +13,8 @@
         <tags>utils</tags>
 
         <dependencies>
-            <dependency id="Acr" version="7.0" />
-            <dependency id="EntityFramework" version="6.0" />
+            <dependency id="Acr" version="7.0.1" />
+            <dependency id="EntityFramework" version="6.1.0" />
         </dependencies>
     </metadata>
 
