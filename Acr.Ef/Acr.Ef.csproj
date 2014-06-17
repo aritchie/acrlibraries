@@ -68,6 +68,8 @@
     <Compile Include="EfConfiguration.cs" />
     <Compile Include="DefaultEfDependencyResolver.cs" />
     <Compile Include="IEfDependencyResolver.cs" />
+    <Compile Include="Mapping\IModelMap.cs" />
+    <Compile Include="Mapping\ModelBuilderExtensions.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="ServiceContainerEfDependencyInjector.cs" />
     <Compile Include="UtilExtensions.cs" />

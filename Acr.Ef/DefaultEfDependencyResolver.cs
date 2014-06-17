@@ -9,12 +9,10 @@ namespace Acr.Ef {
         
 
         public void Install(Type serviceType, object service) {
-            if (services.ContainsKey(serviceType)) {
+            if (services.ContainsKey(serviceType)) 
                 services[serviceType].Add(service);
-            }
-            else {
+            else 
                 services.Add(serviceType, new List<object> { service });
-            }
         }
 
         #region IEfDependencyResolver Members
