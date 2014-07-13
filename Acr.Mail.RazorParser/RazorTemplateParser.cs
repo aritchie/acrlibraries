@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Net.Mail;
 using Acr.Mail.Serialization;
 using RazorEngine;
@@ -12,13 +9,12 @@ namespace Acr.Mail.RazorParser {
     
     public class RazorTemplateParser : IMailTemplateParser {
 
-        public MailMessage Parse(MailTemplate template, IDictionary<string, object> args) {
-            var obj = new ExpandoObject() as IDictionary<string, object>;
-            args.ToList().ForEach(obj.Add);
-
+        public MailMessage Parse(IMailTemplate template, object model) {
             var viewBag = new DynamicViewBag();
             viewBag.AddValue("Helper", new TemplateHelper());
-            var result = Razor.Parse(template.Content, obj, viewBag, template.Key);
+
+            var content = template.ToStringContent();
+            var result = Razor.Parse(content, model, viewBag, template.Location);
 
             return XmlMailSerializer.Deserialize(result);
         }

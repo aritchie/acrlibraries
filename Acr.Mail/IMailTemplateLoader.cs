@@ -6,6 +6,6 @@ namespace Acr.Mail {
     
     public interface IMailTemplateLoader {
 
-        MailTemplate Load(string templateName, CultureInfo cultureInfo);
+        IMailTemplate Load(string templateName, CultureInfo cultureInfo);
     }
 }

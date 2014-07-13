@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
-using System.Text;
 using System.Xml.Serialization;
 
 
@@ -11,88 +9,88 @@ namespace Acr.Mail.Serialization {
     
     public static class XmlMailSerializer {
 
-        public static string Serialize(MailMessage mail) {
-            var xml = new XmlMailMessage {
-                Subject = mail.Subject,
-                Priority = mail.Priority,
-                MessageID = mail.GetMessageID(),
-                ReplyToMessageID = mail.GetInReplyTo(),
-                From = ToXmlMailAddress(mail.From),
-                To = mail.To.Select(ToXmlMailAddress).ToList(),
-                Cc = mail.CC.Select(ToXmlMailAddress).ToList(),
-                Bcc = mail.Bcc.Select(ToXmlMailAddress).ToList(),
-                ReplyToList = mail.ReplyToList.Select(ToXmlMailAddress).ToList(),
-                Attachments = mail
-                    .Attachments
-                    // TODO: streams?
-                    .Select(x => new XmlMailAttachment {
-                        FileName = x.Name,
-                        Path = x.ContentDisposition.FileName
-                    })
-                    .ToList()
-            };
+        //public static string Serialize(MailMessage mail) {
+        //    var xml = new XmlMailMessage {
+        //        Subject = mail.Subject,
+        //        Priority = mail.Priority,
+        //        MessageID = mail.GetMessageID(),
+        //        ReplyToMessageID = mail.GetInReplyTo(),
+        //        From = ToXmlMailAddress(mail.From),
+        //        To = mail.To.Select(ToXmlMailAddress).ToList(),
+        //        Cc = mail.CC.Select(ToXmlMailAddress).ToList(),
+        //        Bcc = mail.Bcc.Select(ToXmlMailAddress).ToList(),
+        //        ReplyToList = mail.ReplyToList.Select(ToXmlMailAddress).ToList(),
+        //        Attachments = mail
+        //            .Attachments
+        //            // TODO: streams?
+        //            .Select(x => new XmlMailAttachment {
+        //                FileName = x.Name,
+        //                Path = x.ContentDisposition.FileName
+        //            })
+        //            .ToList()
+        //    };
 
-            mail.Headers.AllKeys.ToList().ForEach(x => 
-                xml.Headers.Add(new XmlMailHeader {
-                    Key = x,
-                    Value = mail.Headers[x]
-                })
-            );
+        //    mail.Headers.AllKeys.ToList().ForEach(x => 
+        //        xml.Headers.Add(new XmlMailHeader {
+        //            Key = x,
+        //            Value = mail.Headers[x]
+        //        })
+        //    );
 
-            if (mail.IsBodyHtml) {
-                xml.HtmlContent = mail.Body;
-                var plainText = mail.AlternateViews.FirstOrDefault();
-                if (plainText != null) {
-                    using (var sr = new StreamReader(plainText.ContentStream)) {
-                        xml.PlainTextContent = sr.ReadToEnd();
-                    }
-                }
-            }
-            else {
-                xml.PlainTextContent = mail.Body;
-                var htmlText = mail.AlternateViews.FirstOrDefault();
-                if (htmlText != null) {
-                    using (var sr = new StreamReader(htmlText.ContentStream)) {
-                        xml.HtmlContent = sr.ReadToEnd();
-                    }
-                }
-            }
-            var serializer = new XmlSerializer(typeof(XmlMailMessage));
-            using (var sw = new StringWriter()) {
-                serializer.Serialize(sw, xml);
-                return sw.ToString();
-            }
-        }
+        //    if (mail.IsBodyHtml) {
+        //        xml.HtmlContent = mail.Body;
+        //        var plainText = mail.AlternateViews.FirstOrDefault();
+        //        if (plainText != null) {
+        //            using (var sr = new StreamReader(plainText.ContentStream)) {
+        //                xml.PlainTextContent = sr.ReadToEnd();
+        //            }
+        //        }
+        //    }
+        //    else {
+        //        xml.PlainTextContent = mail.Body;
+        //        var htmlText = mail.AlternateViews.FirstOrDefault();
+        //        if (htmlText != null) {
+        //            using (var sr = new StreamReader(htmlText.ContentStream)) {
+        //                xml.HtmlContent = sr.ReadToEnd();
+        //            }
+        //        }
+        //    }
+        //    var serializer = new XmlSerializer(typeof(XmlMailMessage));
+        //    using (var sw = new StringWriter()) {
+        //        serializer.Serialize(sw, xml);
+        //        return sw.ToString();
+        //    }
+        //}
 
 
         public static MailMessage Deserialize(string content) {
             var serializer = new XmlSerializer(typeof(XmlMailMessage));
             XmlMailMessage xml;
 
-            using (var sr = new StringReader(content)) {
+            using (var sr = new StringReader(content)) 
                  xml = (XmlMailMessage)serializer.Deserialize(sr);
-            }
+            
             return ToMailMessage(xml);
         }
 
 
         #region Internals
 
-        private static XmlMailAddress ToXmlMailAddress(MailAddress address) {
-            return new XmlMailAddress {
-                Address = address.Address,
-                DisplayName = address.DisplayName
-            };
-        }
+        //private static XmlMailAddress ToXmlMailAddress(MailAddress address) {
+        //    return new XmlMailAddress {
+        //        Address = address.Address,
+        //        DisplayName = address.DisplayName
+        //    };
+        //}
 
 
         private static MailAddress ToMailAddress(XmlMailAddress address, string groupName) {
-            if (address.Address.IsEmpty()) 
+            if (String.IsNullOrWhiteSpace(address.Address)) 
                 throw new ArgumentException(String.Format("Address is empty in {0} address list", groupName));
 
-            return (address.DisplayName.IsEmpty()
+            return (String.IsNullOrWhiteSpace(address.DisplayName)
                 ? new MailAddress(address.Address)
-                : new MailAddress(address.Address, address.DisplayName, Encoding.UTF8) 
+                : new MailAddress(address.Address, address.DisplayName) 
             ); 
         }
 
@@ -123,10 +121,10 @@ namespace Acr.Mail.Serialization {
             xml.Bcc.ForEach(x => mail.Bcc.Add(ToMailAddress(x, "<bcc>")));
             xml.ReplyToList.ForEach(x => mail.ReplyToList.Add(ToMailAddress(x, "<replyto>")));
 
-            if (!xml.MessageID.IsEmpty()) {
+            if (!String.IsNullOrWhiteSpace(xml.MessageID)) {
                 mail.SetMessageID(xml.MessageID);
             }
-            if (!xml.ReplyToMessageID.IsEmpty()) {
+            if (!String.IsNullOrWhiteSpace(xml.ReplyToMessageID)) {
                 mail.SetInReplyTo(xml.ReplyToMessageID);
             }
 

@@ -10,15 +10,18 @@ namespace Acr.Mail.NVelocityParser {
 
     public class NVelocityDirectResourceLoader : ResourceLoader {
 
-        #region ResourceLoader Implementation
-
+     
         public override long GetLastModified(Resource resource) {
             return 0;
         }
 
 
         public override Stream GetResourceStream(string source) {
-            return new MemoryStream(Encoding.UTF8.GetBytes(source));
+            var encSplit = source.IndexOf(Environment.NewLine);            
+            var encString = source.Substring(0, encSplit);
+            var enc = Encoding.GetEncoding(encString);
+            var body = source.Substring(encSplit);
+            return new MemoryStream(enc.GetBytes(body));
         }
 
 
@@ -29,7 +32,5 @@ namespace Acr.Mail.NVelocityParser {
         public override bool IsSourceModified(Resource resource) {
             return false;
         }
-
-        #endregion
     }
 }

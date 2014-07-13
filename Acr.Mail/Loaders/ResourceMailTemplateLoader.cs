@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
 using System.Reflection;
-using System.Text;
 
 
 namespace Acr.Mail.Loaders {
@@ -25,25 +23,16 @@ namespace Acr.Mail.Loaders {
         }
        
 
-        public MailTemplate Load(string templateName, CultureInfo culture) {
+        public IMailTemplate Load(string templateName, CultureInfo culture) {
             var rn = String.Format("{0}.{1}.{2}", this.Namespace, templateName, this.Extension);
-            var content = this.GetResourceContent(rn);
-
-            return new MailTemplate {
-                Key = rn,
-                Content = content,
-                Encoding = Encoding.UTF8,
-                LastModified = this.dateStarted
-            };
-        }
-
-
-        private string GetResourceContent(string rn) {
-            using (var r = this.assembly.GetManifestResourceStream(rn)) {
-                using (var sr = new StreamReader(r)) {
-                    return sr.ReadToEnd();
-                }
-            }
+            
+            //return new MailTemplate {
+            //    Key = rn,
+            //    Content = content,
+            //    Encoding = Encoding.UTF8,
+            //    LastModified = this.dateStarted
+            //};
+            return null;
         }
     }
 }

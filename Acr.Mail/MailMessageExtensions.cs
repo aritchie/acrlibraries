@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Mail;
 
 
@@ -7,25 +8,25 @@ namespace Acr.Mail {
     public static class MailMessageExtensions {
 
         public static MailMessage AddTo(this MailMessage mail, params MailAddress[] mailAddresses) {
-            mailAddresses.Each(mail.To.Add);
+            mailAddresses.ToList().ForEach(mail.To.Add);
             return mail;
         }
 
 
         public static MailMessage AddCc(this MailMessage mail, params MailAddress[] mailAddresses) {
-            mailAddresses.Each(mail.CC.Add);
+            mailAddresses.ToList().ForEach(mail.CC.Add);
             return mail;
         }
 
 
         public static MailMessage AddBcc(this MailMessage mail, params MailAddress[] mailAddresses) {
-            mailAddresses.Each(mail.Bcc.Add);
+            mailAddresses.ToList().ForEach(mail.Bcc.Add);
             return mail;
         }
 
 
         public static MailMessage AddAttachment(this MailMessage mail, params Attachment[] attachments) {
-            attachments.Each(mail.Attachments.Add);
+            attachments.ToList().ForEach(mail.Attachments.Add);
             return mail;
         }
 
@@ -80,11 +81,12 @@ namespace Acr.Mail {
 
 
         private static MailMessage AddReceiversFromString(MailMessage mail, string strings, Action<MailAddress> action) {
-            if (!strings.IsEmpty()) {
+            if (!String.IsNullOrWhiteSpace(strings)) {
                 strings
-                    .SplitTrim(';')
-                    .Each(x => action(new MailAddress(x)));
-            }            
+                    .Split(';')
+                    .ToList()
+                    .ForEach(x => action(new MailAddress(x.Trim())));
+            }
             return mail;
         }
     }

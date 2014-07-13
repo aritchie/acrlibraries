@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net.Mail;
 using Acr.Mail.Serialization;
@@ -21,30 +22,48 @@ namespace Acr.Mail.NVelocityParser {
             props.SetProperty("direct.resource.loader.class", "Acr.Mail.NVelocityParser.NVelocityDirectResourceLoader; Acr.Mail.NVelocityParser");
 
             engine = new VelocityEngine();
-            engine.Init(props);            
+            engine.Init(props);
         }
 
         #region IMailTemplateParser Members
 
-        public MailMessage Parse(MailTemplate template, IDictionary<string, object> variables) {
+        public MailMessage Parse(IMailTemplate template, object model) {
             var context = new VelocityContext();
-            context.Put("helper", new TemplateHelper());
+            var args = GetArgs(model);
+            if (!args.ContainsKey("helper"))
+                context.Put("helper", new TemplateHelper());
 
-            if (variables != null) {
-                foreach (var key in variables.Keys) {
-                    context.Put(key, variables[key]);
+            foreach (var arg in args)
+                context.Put(arg.Key, arg.Value);
+
+
+            var result = "";
+            using (var sw = new StringWriter()) {
+                var content = template.GetStringContent();
+
+                // HACK: HUGE HACK... can't pass context properly to template loader for nvelocity - first line of string will now be encoding
+                content = template.Encoding.EncodingName + Environment.NewLine + content;
+
+                var tmp = engine.GetTemplate(content, template.Encoding.EncodingName);
+                tmp.Merge(context, sw);
+
+                result = sw.ToString();
+            }
+            return XmlMailSerializer.Deserialize(result);
+        }
+
+
+        private IDictionary<string, object> GetArgs(object obj) {
+            var dict = obj as IDictionary<string, object>;
+            if (dict == null) {
+                dict = new Dictionary<string, object>();
+
+                foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(obj)) {
+                    var value = property.GetValue(obj);
+                    dict.Add(property.Name, value);
                 }
             }
-
-            var parse = String.Empty;
-            using (var sw = new StringWriter()) {
-                // nvelocity thinks it is parsing a file which is why it needs encoding.  just pass UTF-8
-                var nvtemp = engine.GetTemplate(template.Content, "UTF-8");
-                nvtemp.Merge(context, sw);
-
-                parse = sw.ToString();
-            }
-            return XmlMailSerializer.Deserialize(parse);
+            return dict;
         }
 
         #endregion
