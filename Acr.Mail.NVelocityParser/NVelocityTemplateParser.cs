@@ -39,11 +39,8 @@ namespace Acr.Mail.NVelocityParser {
 
             var result = "";
             using (var sw = new StringWriter()) {
-                var content = template.GetStringContent();
-
-                // HACK: HUGE HACK... can't pass context properly to template loader for nvelocity - first line of string will now be encoding
-                content = template.Encoding.EncodingName + Environment.NewLine + content;
-
+                var content = template.ToStringContent();
+                NVelocityDirectResourceLoader.CurrentEncoding = template.Encoding;
                 var tmp = engine.GetTemplate(content, template.Encoding.EncodingName);
                 tmp.Merge(context, sw);
 
